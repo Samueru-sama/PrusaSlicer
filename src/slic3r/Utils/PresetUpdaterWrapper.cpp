@@ -206,7 +206,7 @@ void PresetUpdaterWrapper::cancel_worker_thread()
     if (m_worker_thread.joinable()) {
         if (m_ui_status) {
             m_ui_status->set_canceled(true);
-        } else assert(true);
+        } else assert(false);
 
 		m_worker_thread.join();
 
@@ -226,7 +226,7 @@ PresetUpdaterUIStatus::PresetUpdaterUIStatus(PresetUpdaterUIStatus::PresetUpdate
     if (auto it = policy_map.find(policy); it != policy_map.end()) {
         m_retry_policy = it->second;
     } else {
-        assert(true);
+        assert(false);
         m_retry_policy = {0ms};
     }
 }
@@ -286,7 +286,7 @@ CommonUpdaterDialog::CommonUpdaterDialog(PresetUpdaterUIStatus* ui_status, wxWin
     , PresetUpdaterUIStatusCancel(ui_status)
 {
     auto* headline = new wxStaticText(this, wxID_ANY, first_line, wxDefaultPosition, wxDefaultSize, wxALIGN_CENTER_HORIZONTAL);
-    m_status_text = new wxStaticText(this, wxID_ANY, _L("Initializing..."), wxDefaultPosition, wxDefaultSize, wxALIGN_CENTER_HORIZONTAL);
+    m_status_text = new wxStaticText(this, wxID_ANY, _L("Initializing") + dots, wxDefaultPosition, wxDefaultSize, wxALIGN_CENTER_HORIZONTAL);
     m_cancel_button = new wxButton(this, wxID_CANCEL, "Cancel");
     // Layout using sizer
     wxBoxSizer* hsizer = new wxBoxSizer(wxHORIZONTAL);
