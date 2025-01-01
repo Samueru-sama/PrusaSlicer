@@ -122,6 +122,7 @@ jobs:
         xvfb-run -- ./lib4bin -p -v -r -e /usr/bin/prusa-slicer
         # xvfb-run -- ./lib4bin -p -v -r -e /lib/webkit2gtk-4.0/WebKitNetworkProcess # FIXME: xvfb-run: error: Xvfb failed to start
         rm -f ./lib4bin
+        find /usr/bin /usr/lib -type f -name 'OCCTWrapper.so' -exec cp -vn {} ./bin \;
 
         # find ./shared -type f -exec strip -s -R .comment --strip-unneeded {} ';'
         find ./shared -type f -exec strip {} \; || true
